@@ -14,7 +14,7 @@
     </div>
     <hr/>
     <div class="row">
-      <div v-for="kanji in randomSelection" class="col-12 col-md-6 mt-2" :key="kanji.char" @mouseenter="reveal(kanji)" @mouseleave="hide(kanji)">
+      <div v-for="kanji in randomSelection" class="col-12 col-md-6 mt-2" :key="kanji.char" @mouseenter="reveal(kanji)" @mouseleave="hide(kanji)" @click="reveal(kanji)">
         <div class="card result">
           <div :class="{character: true, 'pt-2': !kanjiToKeyword && !kanji.revealed}">{{ kanjiToKeyword || kanji.revealed ? kanji.char : '?' }}</div>
           <div class="text">
