@@ -1,6 +1,8 @@
 # RTKFinder
 
-RTKFinder is a tool for Japanese learners who have used James Heisig's [Remembering the Kanji](https://en.wikipedia.org/wiki/Remembering_the_Kanji_and_Remembering_the_Hanzi). It allows you to look up kanji using the primitives learnt in the book, as well as directly through the kanji or keyword.
+RTKFinder is a tool for Japanese learners who have used James Heisig's [Remembering the Kanji](https://en.wikipedia.org/wiki/Remembering_the_Kanji_and_Remembering_the_Hanzi). It allows you to find kanji by keyword and vice versa.
+
+The app used to include primitives and the ability to search by them, but unfortunately this feature has been removed to avoid copyright issues.
 
 You can currently find it hosted here: https://rtk.bgior.com
 

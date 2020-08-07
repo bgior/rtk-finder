@@ -19,7 +19,6 @@
           <div :class="{character: true, 'pt-2': !kanjiToKeyword && !kanji.revealed}">{{ kanjiToKeyword || kanji.revealed ? kanji.char : '?' }}</div>
           <div class="text">
             <div class="keyword">{{ !kanjiToKeyword || kanji.revealed ? completeName(kanji) : '?' }}</div>
-            <div class="components">{{ kanji.revealed ? kanji.components : '???? ???? ????' }}</div>
           </div>
         </div>
       </div>

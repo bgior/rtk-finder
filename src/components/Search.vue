@@ -1,7 +1,7 @@
 <!-- © Copyright 2020 Bruno Giorello. Released under GNU AGPLv3, see 'LICENSE.md'. -->
 <template>
   <div>
-    <input type="text" id="txtQuery" v-focus v-model="query" placeholder="Type a keyword or component..." @keydown="evt => handleKeydown(evt)" aria-label="Search"/>
+    <input type="text" id="txtQuery" v-focus v-model="query" placeholder="Type a keyword or kanji..." @keydown="evt => handleKeydown(evt)" aria-label="Search"/>
     <div v-if="queryPresent">
       <div v-if="searchResults.length > 0" class="row">
         <div v-for="(kanji, idx) in limitedSearchResults" class="col-12 col-sm-6 mt-2" :key="kanji.char" @click="copyKanji(kanji)">
@@ -9,7 +9,6 @@
             <div class="character" v-html="highlightCharacter(kanji)"></div>
             <div class="text">
               <div class="keyword" v-html="highlightKeyword(kanji)"></div>
-              <div class="components" v-html="highlightComponents(kanji)"></div>
             </div>
             <transition name="fade">
               <span v-if="kanji.showCopyMessage" class="copy-notice">COPIED</span>
@@ -63,7 +62,7 @@ export default {
         return Kanji
           .filter(k => {
             for (let item of queryItems) {
-              if (k.dword.includes(item.text) || (k.alt && k.alt.includes(item.text)) || (k.components && item.regexToTest.test(k.components)) || item.text.includes(k.char)) {
+              if (k.dword.includes(item.text) || (k.alt && k.alt.includes(item.text)) || item.text.includes(k.char)) {
                 k.relevance = this.relevanceToQuery(k);
                 return true;
               }
@@ -102,13 +101,6 @@ export default {
     highlightKeyword(kanji) {
       return kanji.word.replace(this.regexToHighlight, '<span class="highlight">$1</span>');
     },
-    highlightComponents(kanji) {
-      if (kanji.components) {
-        return kanji.components.replace(this.regexToHighlight, '<span class="highlight">$1</span>');
-      } else {
-        return null;
-      }
-    },
     // Assign a score to each kanji based on how relevant it is to the user's query
     relevanceToQuery(kanji) {
       let score = 0;
@@ -130,12 +122,6 @@ export default {
             score += 89;
           } else {
             score += 79;
-          }
-        } else if (item.regexToTest.test(kanji.components)) {
-          if (item.regexToTestAlone.test(kanji.components)) {
-            score += 70;
-          } else {
-            score += 69;
           }
         }
       }
@@ -231,9 +217,6 @@ export default {
   .result.selected .highlight {
     color: white;
   }
-  .result.selected .components {
-    color: #eed;
-  }
   .result:hover {
     box-shadow: 1px 1px 5px #444;
   }
@@ -263,11 +246,6 @@ export default {
   .highlight {
     color: #f09b00;
     font-weight: bold;
-  }
-  .components {
-    font-size: 12px;
-    color: #666;
-    max-height: 40px;
   }
   .notice {
     color: grey;

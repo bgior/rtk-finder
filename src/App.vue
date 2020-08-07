@@ -103,6 +103,15 @@ a, .clickable-text {
 hr {
   border: 1px solid #ccc;
 }
+h2 {
+  font-size: 22px;
+}
+ul {
+  padding-left: 30px;
+}
+li {
+  margin-bottom: 5px;
+}
 input[type='radio']:after {
     width: 15px;
     height: 15px;
